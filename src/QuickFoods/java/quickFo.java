@@ -68,7 +68,7 @@ public class quickFo {
 			
 		}
 		catch (FileNotFoundException e) {
-			//Original line: System.out.println("Error");
+			//Original line of code: System.out.println("Error");
 			//Line corrected so that the actual error prints out and the developer can fix it
 			System.out.println(e);
 		}
@@ -87,7 +87,7 @@ public class quickFo {
 			createdInvoice.close();
 		}
 		catch (FileNotFoundException e) {
-			//Original line: System.out.println("Error");
+			//Original line of code: System.out.println("Error");
 			//Line corrected so that the actual error prints out and the developer can fix it
 			System.out.println(e);
 		}
