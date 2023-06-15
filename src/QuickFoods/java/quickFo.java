@@ -62,8 +62,9 @@ public class quickFo {
 		    	}
 		    	name = originalDriversTxtFile.nextLine(); 
 		    }
-		    
+		    //In original file not all were closed 
 			look.close();
+			driversTxtFile.close();
 			originalDriversTxtFile.close();
 			
 		}
