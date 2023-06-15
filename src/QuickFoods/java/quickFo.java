@@ -6,17 +6,19 @@ import java.util.Formatter;
 import java.util.Scanner;
 
 public class quickFo {
+	//Variable used to store the driver once extracted from the file
 	static String driver;
 	public static void main(String[] args) {
-		
+		//Fill the attributes with the information for both classes
 		customer jill = new customer(1234,"Jill Jack","123 456 7890 ","12 Cherry Road Plumstead","Cape Town","jilljack@yahoo.com");
 		restaurant pizza = new restaurant("Aesop's Pizza", "Cape Town", "098 765 4321", "Pepperoni pizza", 1, 78, "Extra tomato base on the Pepperoni pizza", 78);
 
 		String location = jill.getCustLocation();
 		
 		try {
-			File y = new File("../../drivers.txt");
-			Scanner look = new Scanner(y);
+			//More descriptive input variables
+			File driversTxtFile = new File("../../drivers.txt");
+			Scanner look = new Scanner(driversTxtFile);
 			
 		    double smallest = Double.MAX_VALUE; 
 		    double currentInt=0;
@@ -46,50 +48,49 @@ public class quickFo {
 		    	search = look.nextLine();
 		    }
 		    int convert = (int) Math.round(smallest);
-		    Scanner x = new Scanner(y);
-		    String name = x.nextLine();
+		    //More descriptive input variables
+		    Scanner originalDriversTxtFile = new Scanner(driversTxtFile);
+		    String name = originalDriversTxtFile.nextLine();
 		    String small = Integer.toString(convert);
 		    if(convert==0) {
 		    	small="";
 		    }
-		    while(x.hasNextLine()) {
+		    while(originalDriversTxtFile.hasNextLine()) {
 		    	if(name.contains(location) && name.contains(small)) {
 		    		driver = name.substring(0, name.indexOf(','));
 		    		break;
 		    	}
-		    	name = x.nextLine(); 
+		    	name = originalDriversTxtFile.nextLine(); 
 		    }
 		    
 			look.close();
-			x.close();
+			originalDriversTxtFile.close();
 			
 		}
 		catch (FileNotFoundException e) {
-			System.out.println("Error");
+			//Original line: System.out.println("Error");
+			//Line corrected so that the actual error prints out and the developer can fix it
+			System.out.println(e);
 		}
 
 		try {
-			Formatter f = new Formatter("../../Invoice.txt");
+			//More descriptive input variables
+			Formatter createdInvoice = new Formatter("../../Invoice.txt");
 			if(!pizza.getRestLocation().equalsIgnoreCase(jill.getCustLocation())) {
-					f.format("Sorry! Our drivers are too far away from you to be able to deliver to your location.");
+				createdInvoice.format("Sorry! Our drivers are too far away from you to be able to deliver to your location.");
 					
 			}
 			else{
-				f.format(jill.customerDetailsToString() + pizza.getRestName() + pizza.restaurantDetailsToString() + driver + jill.getAddress() + pizza.getRestContact());
+				createdInvoice.format(jill.customerDetailsToString() + pizza.getRestName() + pizza.restaurantDetailsToString() + driver + jill.getAddress() + pizza.getRestContact());
 			}
 
-			f.close();
+			createdInvoice.close();
 		}
 		catch (FileNotFoundException e) {
-			System.out.println("Error");
+			//Original line: System.out.println("Error");
+			//Line corrected so that the actual error prints out and the developer can fix it
+			System.out.println(e);
 		}
 		
-		
-		
-		
-		
-		
-		
-		  //System.out.println(jill.customerDetailsToString() + pizza.getRestName() + pizza.restaurantDetailsToString() + driver + jill.getAddress() + pizza.getRestContact());
 	}
 }
